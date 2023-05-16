@@ -11,8 +11,12 @@
         <tr>
             <td>
                 <a href="{% url 'book_detail' book.id %}">{{ book.name }}</a>
+                {% if user.is_authenticated %}
                 <a href="{% url 'book_update' book.id %}"><u>редактировать</u></a>
                 <a href="{% url 'book_delete' book.id %}"><u>удалить</u></a>
+
+                 {% endif %}
+
             </td>
             <td>{{ book.genre }}</td>
             <td>{{ book.description }}</td>

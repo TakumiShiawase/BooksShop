@@ -4,6 +4,8 @@
         <title>{% block head_title %}{% endblock head_title %}</title>
     </head>
     <body>
+                <a href="{% url 'login' %}"><u>Login</u></a>
+                <a href="{% url 'signup' %}"><u>Signup</u></a>
         {% block body %}
         {% block content %}
         {% endblock content %}

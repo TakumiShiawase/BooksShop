@@ -3,6 +3,8 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Book, Comment, Users
 from .forms import BooksForm, CommentForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+#from . import sign
 
 class BooksList(ListView):
     model = Book
@@ -65,7 +67,14 @@ class CommentDeleteView(DeleteView):
     success_url = '/'
 
 
-class UsersList(ListView):
+class UsersList(LoginRequiredMixin, ListView):
     model = Users
     template_name = 'profile/user_list.html'
     context_object_name = 'user'
+
+    def get_queryset(self):
+        # Retrieve the currently logged-in user
+        user = self.request.user
+        # Filter the queryset to only include the logged-in user
+        queryset = super().get_queryset().filter(id=user.id)
+        return queryset
