@@ -1,0 +1,26 @@
+{% extends 'default.html' %} 
+{% block title%}title{%endblock title%}
+{% block content %}
+<table>
+    <tr>
+        <td>Books Name</td>
+        <td>Genre</td>
+        <td>Description</td>
+    </tr>
+    {% for book in book %}
+        <tr>
+            <td>
+                <a href="{% url 'book_detail' book.id %}">{{ book.name }}</a>
+                <a href="{% url 'book_update' book.id %}"><u>редактировать</u></a>
+                <a href="{% url 'book_delete' book.id %}"><u>удалить</u></a>
+            </td>
+            <td>{{ book.genre }}</td>
+            <td>{{ book.description }}</td>
+            <td>{{ book.writer }}</td>
+            <td>{{ book.created }}</td>
+            <td>{{ book.price }}</td>
+        </tr>
+    {% endfor %}  
+</table> 
+{% endblock content %}
+['name', 'description','writer','price','created']

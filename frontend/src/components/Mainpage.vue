@@ -1,102 +1,17 @@
 <template>
-    <div>
-        <header class="header">
-            <div class="header-logo">It's a logo</div>
-            <nav class="header-nav">
-                <ul class="header-menu-list">
-                    <li><a href="#">Books</a></li>
-                    <li><a href="#">Discussions</a></li>
-                    <li><a href="#">Contents</a></li>
-                    <li><a href="#">My Libary</a></li>
-                </ul>
-            </nav>
-            <form method="get">
-                    <input name="header-search" placeholder="Search" type="search" size="30">
-                </form>
-                <button class="login-button"><a href="#" class="login-link">login</a></button>
-        </header>
-    </div>
+  <Header/>
 </template>
 
 <script>
+import Header from './Header.vue'
 /* eslint-disable */ 
 export default {
+  components: { Header },
   name: 'Mainpage'
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.nav {
-    margin: 0 auto;
-}
-.header{
-display: flex;
-justify-content: space-between;
-align-items: center;
-margin: 0, auto;
-max-width: auto;
-height: 80px;
-background-color: rgba(132, 0, 255, 0.5803921568627451);
-}
-.header-logo{
-    display: flex;
-    margin-left: 10px;
-}
-.header-nav{
-    display: flex;
-    height: 100%;
 
-}
-.header-menu-list{
-display: flex;
-margin: 0;
-padding: 0;
-list-style: none;
-}
-.drop-menu {
-  display: inline-block;
-  position: relative;
-}
-
-.header-nav li{
-    display: flex;
-}
-.header-menu-list a{
-    display: flex;
-    font-family: sans-serif;
-    align-items: center;
-    color: white;
-    padding: 0 20px;
-    text-decoration: none;
-    text-transform: uppercase;
-}
-.header-menu-list a:hover{
-    background-color: rgba(2, 167, 240, 0.2549019607843137);
-}
-
-.header-search::-ms-clear{
-display:none;
-width:0;
-height:0;
-}
-
-.login-button{
-    display: block;
-    border-width: 0px;
-    left: 0px;
-    top: 0px;
-    margin-right: 40px;
-    width: 140px;
-    height: 40px;
-    background: inherit;
-    background-color: rgba(2, 167, 240, 0.2549019607843137);
-    border: none;
-    border-radius: 5px;
-}
-.login-link{
-    color: white;
-    text-transform: uppercase;
-    text-decoration: none;
-}
 </style>

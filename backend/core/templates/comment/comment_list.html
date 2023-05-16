@@ -1,0 +1,18 @@
+{% extends 'default.html' %} 
+
+{% block title %} comment {% endblock title %}
+
+{% block content %}
+{% if comment_list %}
+    {% for comment in comment_list %}
+    <table>
+        {{  comment.user }}
+        {{ comment.book }}
+        {{ comment.text}}
+        {{ comment.created }}
+    </table>    
+    {% endfor %}
+{% else %}
+ <h3>Нет откликов</h3>
+ {% endif %}
+{% endblock content %}

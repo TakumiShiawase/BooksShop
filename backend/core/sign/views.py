@@ -8,4 +8,4 @@ from .models import BaseRegisterForm
 class BaseRegisterView(CreateView):
     model = User
     form_class = BaseRegisterForm
-    success_url = '/'
+    success_url = 'user/'

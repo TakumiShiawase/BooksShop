@@ -1,3 +1,4 @@
+
 from django.db import models
 
 class Genre(models.Model):
@@ -7,12 +8,12 @@ class Genre(models.Model):
 		return self.name
 
 class Book(models.Model):
-	writer = models.ForeignKey()
-	category = models.ForeignKey(Genre, on_delete = models.CASCADE)
+	writer = models.CharField(max_length=50)
+	genre = models.ForeignKey(Genre, on_delete = models.CASCADE)
 	name = models.CharField(max_length = 100)
 	price = models.IntegerField()
-	coverpage = models.FileField(upload_to = "#")
-	bookpage = models.FileField(upload_to = "#")
+	# coverpage = models.FileField(upload_to = "#")
+	# bookpage = models.FileField(upload_to = "#")
 	created = models.DateTimeField(auto_now_add=True)
 	updated = models.DateTimeField(auto_now=True)
 	totalreview = models.IntegerField(default=0)
@@ -23,12 +24,14 @@ class Book(models.Model):
 
 	
 class Users(models.Model):
-	name = models.CharField(max_length = 100)
+	name = models.CharField(max_length = 15)
 	user_dis = models.TextField()
-	user_avatar = models.FileField(upload_to = "#")
+	# user_avatar = models.FileField(upload_to = "#")
 	create_at = models.DateTimeField(auto_now_add = True)
 	updated_at = models.DateTimeField(auto_now_add = True)
-	user_rating = models.IntegerField()
+	instagram = models.CharField(max_length=50, null=True, blank=True)
+	facebook = models.CharField(max_length=50, null=True, blank=True)
+	# user_rating = models.IntegerField()
 
 	def __str__(self):
 		return self.name
@@ -39,3 +42,13 @@ class Review(models.Model):
 	review_rating = models.IntegerField()
 	review_text = models.TextField()
 	created = models.DateTimeField(auto_now_add=True)
+
+class Comment(models.Model):
+    user = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='replies')
+    text = models.TextField()
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True)
+    taken = models.BooleanField(default=False)
+
+    def __str__(self) -> str:
+        return f'Comment by {self.user} on {self.book}'
