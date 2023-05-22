@@ -5,20 +5,20 @@ from decimal import Decimal
 from django.conf import settings
 
 class Favourite(object):
-    def favourite_add(request, bookid):
-        book = get_object_or_404(Book, id=bookid)
+    def favourite_add(request, book.id):
+        book = get_object_or_404(Book, id=book.id)
         book.favourite.add(request.user)
 
 
-def cart_add(request, bookid):
+def favourite_add(request, book.id):
 	favourite = Favourite(request)  
-	book = get_object_or_404(Book, id=bookid) 
+	book = get_object_or_404(Book, id=book.id) 
 	favourite.add(book=book)
 
 	return redirect('store/default.html')
 
-def cart_remove(request, bookid):
+def favourite_remove(request, book.id):
     favourite = Favourite(request)  
-    book = get_object_or_404(Book, id=bookid)
+    book = get_object_or_404(Book, id=book.id)
     favourite.remove(book)
     return redirect('store/favourite_list.html')
