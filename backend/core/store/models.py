@@ -1,5 +1,6 @@
 
 from django.db import models
+from django.contrib.auth.models import User
 
 class Genre(models.Model):
 	name = models.CharField(max_length = 100)
@@ -20,6 +21,7 @@ class Book(models.Model):
 	totalrating = models.IntegerField(default=0)
 	status = models.IntegerField(default=0)
 	description = models.TextField()
+	favourite = models.ManyToManyField(User, related_name='favourite', blank=True)
 	
 
 	

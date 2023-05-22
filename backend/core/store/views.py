@@ -3,6 +3,8 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Book, Comment, Users
 from .forms import BooksForm, CommentForm
+from .filters import BookFilter
+
 
 class BooksList(ListView):
     model = Book
@@ -14,6 +16,16 @@ class BooksDetail(DetailView):
     model = Book
     template_name = 'store/book_detail.html'
     context_object_name = 'book_detail'
+
+
+class BookSearch(ListView):
+    template_name = 'store/book_search.html'
+    queryset = Book.objects.all()
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter'] = BookFilter(self.request.GET, queryset=self.get_queryset())
+        return context
 
 class BooksCreate(CreateView):
     template_name = 'store/book_create.html'
@@ -35,6 +47,8 @@ class BooksDelete(DeleteView):
     template_name = 'store/book_delete.html'
     queryset = Book.objects.all()
     success_url = '/'
+
+
 
 class CommentView(ListView):
     queryset = Comment.objects.all()

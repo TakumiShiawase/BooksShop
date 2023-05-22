@@ -11,6 +11,7 @@
             {{ user.facebook }}
         </table>
     {% endfor %} 
+    <button><a href="{% url 'book_favourite_list' %}">Все избранные</a></button>
     <button><a href="{% url 'book_create' %}">Добавить книгу</a></button>
 {% endblock content %}
 

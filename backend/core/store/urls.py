@@ -1,5 +1,6 @@
 from django.urls import path
-from .views import BooksList, BooksDetail, BooksCreate, BooksUpdate, BooksDelete, UsersList, CommentView, CommentCreateView, CommentDetailView
+from .views import BooksList, BooksDetail, BooksCreate, BooksUpdate, BooksDelete, UsersList, CommentView, CommentCreateView, CommentDetailView, BookSearch
+from store import views
 
 urlpatterns = [
     path('', BooksList.as_view()),
@@ -11,4 +12,5 @@ urlpatterns = [
     path('comment_detail/', CommentDetailView.as_view(), name='comment_detail'),
     path('comment_list/', CommentView.as_view(), name='comment_list'),
     path('user/', UsersList.as_view(), name='users_list'),
+    path('search', BookSearch.as_view(), name='book_search'),
 ]
