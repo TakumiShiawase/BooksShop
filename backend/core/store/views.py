@@ -1,10 +1,11 @@
-
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Book, Comment, Users
+from .models import Book, Comment
+from django.contrib.auth.models import User, auth
 from .forms import BooksForm, CommentForm
 from .filters import BookFilter
-
+#from users.models import Profile IT WORKS!!!
+#from django.contrib.auth.decorators import login_required
 
 class BooksList(ListView):
     model = Book
@@ -16,7 +17,6 @@ class BooksDetail(DetailView):
     model = Book
     template_name = 'store/book_detail.html'
     context_object_name = 'book_detail'
-
 
 class BookSearch(ListView):
     template_name = 'store/book_search.html'
@@ -36,12 +36,14 @@ class BooksCreate(CreateView):
         context = super().get_context_data(**kwargs)
         context['form'] = BooksForm
         return context
-    
+
+
 class BooksUpdate(UpdateView):
     template_name = 'store/book_create.html'
     form_class = BooksForm
     success_url = '/'
     queryset = Book.objects.all()
+
 
 class BooksDelete(DeleteView):
     template_name = 'store/book_delete.html'
@@ -60,9 +62,6 @@ class CommentDetailView(DetailView):
     template_name = 'comment/comment_detail.html'
 
 
-
-
-
 class CommentCreateView(CreateView):
     template_name = 'comment/comment_create.html'
     form_class = CommentForm
@@ -78,8 +77,3 @@ class CommentDeleteView(DeleteView):
     queryset = Comment.objects.all()
     success_url = '/'
 
-
-class UsersList(ListView):
-    model = Users
-    template_name = 'profile/user_list.html'
-    context_object_name = 'user'
